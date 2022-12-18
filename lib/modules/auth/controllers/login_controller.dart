@@ -51,7 +51,7 @@ class LoginController extends GetxController {
           color: Colors.white,
         ),
       );
-      // Get.offAllNamed(RoutesName.navigation);
+      Get.offAllNamed(RoutesName.navigation);
     } catch (e) {
       Get.snackbar(
         'Gagal Masuk !',

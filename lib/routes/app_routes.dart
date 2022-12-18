@@ -6,4 +6,5 @@ abstract class RoutesName {
   static const navigation = '/navigation';
   static const profile = '/profile';
   static const drawer = '/drawer';
+  static const detail = '/detail';
 }

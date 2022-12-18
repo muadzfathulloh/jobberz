@@ -16,10 +16,11 @@ class ProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: SvgPicture.asset('assets/icons/back-button.svg')),
+                onTap: () {
+                  Get.back();
+                },
+                child: SvgPicture.asset('assets/icons/back-button.svg'),
+              ),
               const SizedBox(height: 20),
               Center(
                 child: Column(

@@ -7,6 +7,8 @@ import 'package:jobberz_app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:jobberz_app/modules/dashboard/views/dashboard_view.dart';
 import 'package:jobberz_app/modules/dashboard/views/navigation.dart';
 import 'package:jobberz_app/modules/dashboard/views/drawer_view.dart';
+import 'package:jobberz_app/modules/detail_job/bindings/detail_job_binding.dart';
+import 'package:jobberz_app/modules/detail_job/views/detail_job_view.dart';
 import 'package:jobberz_app/modules/profile/views/profile_view.dart';
 import 'package:jobberz_app/modules/splash/bindings/splash_binding.dart';
 import 'package:jobberz_app/modules/splash/views/splash_view.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: RoutesName.drawer,
       page: () => DrawerView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: RoutesName.detail,
+      page: () => DetailJobView(),
+      binding: DetailJobBinding(),
     ),
   ];
 }

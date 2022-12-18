@@ -142,15 +142,149 @@ class DashboardView extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Featured Jobs',
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: kPrimary),
                         ),
-                        Text('Create'),
+                        GestureDetector(
+                          child: Text('Create'),
+                          onTap: () {
+                            Get.bottomSheet(
+                              SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            color: Color(0XFF636266),
+                                          ),
+                                          height: 4,
+                                          width: 36,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Text(
+                                        'Create Job',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Nama Pekerjaan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Perusahaan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Kategori Pekerjaan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Gaji',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Orang yang dibutuhkan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Lokasi',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: 50,
+                                          decoration: const BoxDecoration(
+                                            color: kPrimary,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                              child: Text(
+                                            'Create',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: kWhite,
+                                                fontWeight: FontWeight.w500),
+                                          )),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              backgroundColor: kWhite,
+                              isScrollControlled: true,
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -204,15 +338,149 @@ class DashboardView extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Recommended Jobs',
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Color(0XFF274C70)),
                         ),
-                        Text('Create'),
+                        GestureDetector(
+                          child: Text('Create'),
+                          onTap: () {
+                            Get.bottomSheet(
+                              SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            color: Color(0XFF636266),
+                                          ),
+                                          height: 4,
+                                          width: 36,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Text(
+                                        'Create Job',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Nama Pekerjaan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Perusahaan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Kategori Pekerjaan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Gaji',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Orang yang dibutuhkan',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: const InputDecoration(
+                                          //
+                                          hintText: 'Lokasi',
+                                          fillColor: kWhite,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: 50,
+                                          decoration: const BoxDecoration(
+                                            color: kPrimary,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                              child: Text(
+                                            'Create',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: kWhite,
+                                                fontWeight: FontWeight.w500),
+                                          )),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              backgroundColor: kWhite,
+                              isScrollControlled: true,
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
