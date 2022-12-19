@@ -92,29 +92,38 @@ class RegisterView extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(height: Get.height * 0.025),
-                                    TextFormField(
-                                      controller:
-                                          controller.passwordTextController,
-                                      scrollPadding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.4),
-                                      textInputAction: TextInputAction.done,
-                                      keyboardType:
-                                          TextInputType.visiblePassword,
-                                      decoration: InputDecoration(
-                                        icon: const Icon(Icons.lock_rounded),
-                                        hintText: 'Password',
-                                        fillColor: kWhite,
-                                        suffixIcon: IconButton(
-                                          color: Colors.grey,
-                                          icon:
-                                              const Icon(Icons.visibility_off),
-                                          onPressed: () {},
+                                    Obx(
+                                      () => TextFormField(
+                                        controller:
+                                            controller.passwordTextController,
+                                        scrollPadding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.4),
+                                        textInputAction: TextInputAction.done,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
+                                        decoration: InputDecoration(
+                                          icon: const Icon(Icons.lock_rounded),
+                                          hintText: 'Password',
+                                          fillColor: kWhite,
+                                          suffixIcon: IconButton(
+                                            color: Colors.grey,
+                                            icon: Icon(
+                                                controller.isObsecure.value
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility),
+                                            onPressed: () {
+                                              controller.isObsecure.value =
+                                                  !controller.isObsecure.value;
+                                            },
+                                          ),
                                         ),
+                                        autofocus: false,
+                                        obscureText:
+                                            controller.isObsecure.value,
                                       ),
-                                      autofocus: false,
                                     ),
                                   ],
                                 ),

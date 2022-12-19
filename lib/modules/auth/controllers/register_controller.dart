@@ -35,11 +35,11 @@ class RegisterController extends GetxController {
 
     try {
       var registerResponse = await userService.userRegister(input);
-      // Storage.saveValue(storageToken, registerResponse?.accessToken)
-      //     .then((value) => EasyLoading.dismiss());
+
       Get.snackbar(
         'Berhasil Mendaftar !',
-        'Selamat Datang ' + '${registerResponse!.data.user.username}',
+        // ignore: prefer_interpolation_to_compose_strings
+        'Silahkan login terlebih dahulu!',
         backgroundColor: Colors.green,
         colorText: Colors.white,
         snackPosition: SnackPosition.BOTTOM,
@@ -49,7 +49,7 @@ class RegisterController extends GetxController {
           color: Colors.white,
         ),
       );
-      Get.offAllNamed(RoutesName.navigation);
+      Get.offNamed(RoutesName.login);
     } catch (e) {
       print(e);
       Get.snackbar(

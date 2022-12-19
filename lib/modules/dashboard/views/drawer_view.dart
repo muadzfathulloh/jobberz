@@ -31,12 +31,14 @@ class DrawerView extends StatelessWidget {
                         'assets/images/profile-2.png',
                         width: 80,
                       ),
-                      const Text(
-                        'Mu\'adz Fathulloh',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
+                      Obx(
+                        () => Text(
+                          controller.user.value.username,
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
                       ),
                       const Text(
                         'Mobile Developer',
@@ -53,16 +55,6 @@ class DrawerView extends StatelessWidget {
                 height: 10,
               ),
               DrawerListTile(
-                onTap: () {
-                  // Get.toNamed(RoutesName.dashboard);
-                },
-                icon: 'assets/icons/bio-drawer.svg',
-                title: 'Biodata',
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              DrawerListTile(
                 onTap: () {},
                 icon: 'assets/icons/resume-drawer.svg',
                 title: 'Resume',
@@ -76,12 +68,12 @@ class DrawerView extends StatelessWidget {
                 title: 'Portofolio',
               ),
               SizedBox(
-                height: Get.height * 0.2,
+                height: Get.height * 0.25,
               ),
               DrawerListTile(
                 onTap: () {},
                 icon: 'assets/icons/linkedin.svg',
-                title: '@muadzfathulloh',
+                title: '@' + controller.user.value.username,
               ),
               const SizedBox(
                 height: 5,
@@ -89,7 +81,7 @@ class DrawerView extends StatelessWidget {
               DrawerListTile(
                 onTap: () {},
                 icon: 'assets/icons/telegram.svg',
-                title: '@muadzfathulloh',
+                title: '@' + controller.user.value.username,
               ),
               const Divider(
                 thickness: 1,

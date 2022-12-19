@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:jobberz_app/routes/app_routes.dart';
+import 'package:jobberz_app/utils/storage.dart';
 
 class SplashController extends GetxController {
   @override
@@ -10,9 +11,11 @@ class SplashController extends GetxController {
 
   Future<void> checkToken() async {
     await Future.delayed(
-      const Duration(seconds: 1),
+      const Duration(seconds: 3),
       () {
-        Get.offAllNamed(RoutesName.login);
+        Storage.hasData('token')
+            ? Get.offAllNamed(RoutesName.navigation)
+            : Get.offAllNamed(RoutesName.login);
       },
     );
   }

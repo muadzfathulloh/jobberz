@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jobberz_app/constants/strings.dart';
 import 'package:jobberz_app/constants/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:jobberz_app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:jobberz_app/routes/app_routes.dart';
+import 'package:jobberz_app/utils/storage.dart';
 import 'package:jobberz_app/widgets/featured_card.dart';
 import 'package:jobberz_app/widgets/recom_card.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,6 @@ class DashboardView extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            print(controller.user.value.username);
                             Get.toNamed(RoutesName.profile);
                           },
                           child: Image.asset(
@@ -47,18 +48,21 @@ class DashboardView extends StatelessWidget {
                               'Hallo,',
                               style: TextStyle(color: Color(0XFF274C70)),
                             ),
-                            Text(
-                              controller.user.value.username,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: Color(0XFF274C70)),
-                            )
+                            Obx(
+                              () => Text(
+                                controller.user.value.username,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0XFF274C70)),
+                              ),
+                            ),
                           ],
                         ),
                       ],
                     ),
                     InkWell(
                       onTap: () {
+                        print(controller.jobs.length);
                         controller.openEndDrawer();
                       },
                       child: SvgPicture.asset('assets/icons/menu.svg'),
@@ -190,8 +194,9 @@ class DashboardView extends StatelessWidget {
                                         height: 20,
                                       ),
                                       TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        controller:
+                                            controller.jobNameTextController,
+                                        keyboardType: TextInputType.name,
                                         decoration: const InputDecoration(
                                           //
                                           hintText: 'Nama Pekerjaan',
@@ -199,8 +204,9 @@ class DashboardView extends StatelessWidget {
                                         ),
                                       ),
                                       TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        controller:
+                                            controller.companyTextController,
+                                        keyboardType: TextInputType.name,
                                         decoration: const InputDecoration(
                                           //
                                           hintText: 'Perusahaan',
@@ -208,17 +214,9 @@ class DashboardView extends StatelessWidget {
                                         ),
                                       ),
                                       TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        decoration: const InputDecoration(
-                                          //
-                                          hintText: 'Kategori Pekerjaan',
-                                          fillColor: kWhite,
-                                        ),
-                                      ),
-                                      TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        controller:
+                                            controller.sallaryTextController,
+                                        keyboardType: TextInputType.number,
                                         decoration: const InputDecoration(
                                           //
                                           hintText: 'Gaji',
@@ -226,20 +224,12 @@ class DashboardView extends StatelessWidget {
                                         ),
                                       ),
                                       TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        controller:
+                                            controller.rateTextController,
+                                        keyboardType: TextInputType.number,
                                         decoration: const InputDecoration(
                                           //
-                                          hintText: 'Orang yang dibutuhkan',
-                                          fillColor: kWhite,
-                                        ),
-                                      ),
-                                      TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        decoration: const InputDecoration(
-                                          //
-                                          hintText: 'Lokasi',
+                                          hintText: 'Rate',
                                           fillColor: kWhite,
                                         ),
                                       ),
@@ -251,7 +241,7 @@ class DashboardView extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Navigator.pop(context);
+                                          controller.createJob();
                                         },
                                         child: Container(
                                           width:
@@ -291,43 +281,36 @@ class DashboardView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              CarouselSlider(
-                options: CarouselOptions(
-                  clipBehavior: Clip.none,
-                  viewportFraction: 0.84,
-                  aspectRatio: 2.3,
-                  enlargeCenterPage: true,
-                  enableInfiniteScroll: false,
+              Obx(
+                () => CarouselSlider.builder(
+                  options: CarouselOptions(
+                    clipBehavior: Clip.none,
+                    viewportFraction: 0.84,
+                    aspectRatio: 2.8,
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: false,
+                  ),
+                  itemCount: controller.jobs.length,
+                  itemBuilder:
+                      (BuildContext context, int index, int realIndex) {
+                    var job = controller.jobs[index];
+                    return SizedBox(
+                      width: Get.width,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(RoutesName.detail, arguments: index);
+                        },
+                        child: FeaturedCard(
+                            title: job.jobName,
+                            company: job.company,
+                            rate: job.rate,
+                            category_1: 'dev',
+                            category_2: 'full',
+                            people: 'Recruiting Several People'),
+                      ),
+                    );
+                  },
                 ),
-                items: const [
-                  FeaturedCard(
-                    title: 'Backend Developer',
-                    company: 'Tokopedia',
-                    rate: '4.8',
-                    category_1: 'Golang',
-                    category_2: 'Full-Time',
-                    sallary: '7.000.000 - 8.000.000',
-                    people: 'Recruiting several people',
-                  ),
-                  FeaturedCard(
-                    title: 'Mobile Developer',
-                    company: 'Sindika',
-                    rate: '4.6',
-                    category_1: 'Flutter',
-                    category_2: 'Part-Time',
-                    sallary: '4.000.000 - 6.000.000',
-                    people: 'Recruiting two people',
-                  ),
-                  FeaturedCard(
-                    title: 'Design Patern',
-                    company: 'Blibli',
-                    rate: '4.8',
-                    category_1: 'Design Patern',
-                    category_2: 'Part-Time',
-                    sallary: '7.000.000 - 8.000.000',
-                    people: 'Recruiting several people',
-                  ),
-                ],
               ),
               const SizedBox(
                 height: 30,
@@ -483,32 +466,26 @@ class DashboardView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    const RecomCard(
-                      title: 'Design Patern',
-                      company: 'PT. Sindika',
-                      category_1: 'Design Patern',
-                      category_2: 'Part-Time',
-                      sallary: '7.000.000 - 8.000.000',
-                      locate: 'Surabaya',
-                    ),
-                    const SizedBox(height: 10),
-                    const RecomCard(
-                      title: 'Mobile Developer',
-                      company: 'PT. Mitra Informatika',
-                      category_1: 'Flutter',
-                      category_2: 'Full-Time',
-                      sallary: '4.000.000 - 8.000.000',
-                      locate: 'Surabaya',
-                    ),
-                    const SizedBox(height: 10),
-                    const RecomCard(
-                      title: 'Data Research',
-                      company: 'PT. Pelinda',
-                      category_1: 'Power Point',
-                      category_2: 'Part-Time',
-                      sallary: '3.000.000 - 5.000.000',
-                      locate: 'Surabaya',
+                    Obx(
+                      () => ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: controller.jobs.length,
+                        itemBuilder: (context, index) {
+                          var job = controller.jobs[index];
+                          return Column(
+                            children: [
+                              RecomCard(
+                                  title: job.jobName,
+                                  category_1: 'Bachelor',
+                                  category_2: 'Full',
+                                  locate: 'Surabaya'),
+                              SizedBox(height: 8)
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

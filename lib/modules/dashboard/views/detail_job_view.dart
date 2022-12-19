@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jobberz_app/constants/theme.dart';
-import 'package:jobberz_app/modules/detail_job/controllers/detail_job_controller.dart';
+import 'package:jobberz_app/modules/dashboard/controllers/dashboard_controller.dart';
 
 class DetailJobView extends StatelessWidget {
   DetailJobView({super.key});
-  final DetailJobController controller = Get.find();
+  final DashboardController controller = Get.find();
+  final dynamic job = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class DetailJobView extends StatelessWidget {
                             height: Get.height * 0.012,
                           ),
                           Text(
-                            'Mobile Developer',
+                            controller.jobs[job].jobName,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style:
@@ -46,7 +47,7 @@ class DetailJobView extends StatelessWidget {
                             height: Get.height * 0.012,
                           ),
                           Text(
-                            'Tokopedia',
+                            controller.jobs[job].company,
                             style: TextStyle(fontSize: 16),
                           ),
                         ],
@@ -92,7 +93,7 @@ class DetailJobView extends StatelessWidget {
                         SizedBox(
                           width: Get.width * 0.35,
                           child: Text(
-                            '4.8',
+                            controller.jobs[job].rate,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             textAlign: TextAlign.end,
@@ -145,7 +146,7 @@ class DetailJobView extends StatelessWidget {
                         SizedBox(
                           width: Get.width * 0.35,
                           child: Text(
-                            'Rp.4.000.000/bulan',
+                            'Rp.${controller.jobs[job].sallary}/bulan',
                             textAlign: TextAlign.end,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -187,9 +188,37 @@ class DetailJobView extends StatelessWidget {
                     thickness: 0.9,
                     color: kBlack,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Created at',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.35,
+                          child: Text(
+                            controller.jobs[job].createdAt.toString(),
+                            textAlign: TextAlign.end,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 14, color: kPrimary),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    thickness: 0.9,
+                    color: kBlack,
+                  ),
                 ],
               ),
-              SizedBox(height: Get.height * 0.35),
+              SizedBox(height: Get.height * 0.3),
               InkWell(
                 onTap: () {},
                 child: SizedBox(

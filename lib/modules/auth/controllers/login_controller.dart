@@ -35,13 +35,10 @@ class LoginController extends GetxController {
         'password': passwordTextController.text,
       };
       final loginResponse = await userService.userLogin(input);
-      var tokken = loginResponse?.data.accesToken;
-      Storage.saveValue(storageToken, loginResponse?.data.accesToken);
-      print('token :$tokken');
+      Storage.saveValue(storageToken, loginResponse?.accesToken);
       Get.snackbar(
         'Berhasil Masuk !',
-        // ignore: unnecessary_string_interpolations
-        'Selamat Datang ' + '${loginResponse?.data.user.username}',
+        'Selamat Datang',
         snackPosition: SnackPosition.BOTTOM,
         margin: const EdgeInsets.all(20),
         backgroundColor: Colors.green,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:jobberz_app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:jobberz_app/widgets/recommended_card.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  ProfileView({super.key});
+  final DashboardController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +29,17 @@ class ProfileView extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/images/profile-3.png',
-                      width: MediaQuery.of(context).size.width * 0.25,
+                      width: Get.width * 0.25,
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      'Mu\'adz Fathulloh',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0XFF274C70),
+                    Obx(
+                      () => Text(
+                        controller.user.value.username,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0XFF274C70),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -180,10 +184,12 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      const Text(
-                        '@muadzfathulloh',
-                        style: TextStyle(
-                          color: Color(0XFF274C70),
+                      Obx(
+                        () => Text(
+                          '@' + controller.user.value.username,
+                          style: TextStyle(
+                            color: Color(0XFF274C70),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -212,10 +218,12 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      const Text(
-                        '@muadzfathulloh',
-                        style: TextStyle(
-                          color: Color(0XFF274C70),
+                      Obx(
+                        () => Text(
+                          '@' + controller.user.value.username,
+                          style: TextStyle(
+                            color: Color(0XFF274C70),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 2),
